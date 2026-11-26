@@ -1,10 +1,35 @@
 # PHANTOM VAULT
 
-**Self-hosted private communication for Windows.**
+**Your PC is the server. Your keys. Your files. No cloud middleman.**
 
-Phantom Vault turns a Windows PC into an IPv6-addressable host for encrypted messages and original-quality file transfers. No third-party relay or cloud account is required for application operation.
+Why should sending a private message or sharing a massive file require somebody else's servers, somebody else's storage plan, or somebody else's permission?
 
-> R14 is an experimental desktop build, not an independently audited secure messaging product. Do not rely on it for high-risk communications.
+Phantom Vault is a self-hosted Windows application that turns ordinary local hardware into a private messaging and file-sharing server. Connect directly over IPv6, authenticate, and exchange encrypted data. No mandatory cloud account. No third-party relay. No forced media compression.
+
+## What we're fighting
+
+| The problem | What Phantom Vault does instead |
+| --- | --- |
+| Your data lives on someone else's infrastructure. | Host it on your own PC. |
+| Platforms impose file-size caps and paid storage tiers. | Transfer original files in encrypted chunks; available storage, bandwidth and implementation limits determine capacity. |
+| Messaging apps downsample photos and videos. | Preserve the original bytes. A compatibility preview never replaces the original file. |
+| Changing shared encryption keys can become a coordination nightmare. | Either participant can rotate the derived key; both devices synchronize automatically. |
+| A password alone doesn't prove who is connecting. | Bind each enrolled name to an Ed25519 device identity and verify signed requests. |
+| Self-hosting often means installing a stack of dependencies. | Build once, distribute the portable Windows folder. End users need no separate Python, Node.js or browser installation. |
+
+## What makes this build different
+
+- **Your hardware becomes the infrastructure.** The app detects a global IPv6 address, starts a local host and generates an invitation containing the endpoint and certificate public-key fingerprint.
+- **Two separate secrets.** The server password controls admission; the user-selected 256-bit root key derives encryption keys. Receivers choose their own names and prove possession of both credentials and their device identity.
+- **Verification by default.** TLS 1.3, pinned certificate identity, IP SAN and validity checks, Ed25519 signatures, SHA-256 request integrity and replay rejection. Cryptographic known-answer tests run at startup.
+- **Rotate without the manual key exchange.** Signed rotation events synchronize HKDF-derived AES-256-GCM key epochs. Both sides can initiate rotation, the host can schedule it, and returning clients can recover the verified epoch history.
+- **Original-quality file sharing.** Encrypted 4 MiB chunks, host approval of receiver uploads, and no compression of the transferred original. A three-chunk binary transfer passed an independent source/receiver SHA-256 comparison.
+- **Portable desktop workflow.** A locally bundled interface and runtimes. HTTPS carries the API traffic; an external browser is not the application.
+
+These are the project's design differentiators, not claims that its individual cryptographic techniques are new.
+
+> **Experimental R14:** locally tested, not independently security-audited. The initial invitation must be trusted, the host remains trusted, and root-derived rotation is not forward secrecy. Do not rely on this build for high-risk communications.
+
 
 ## Architecture
 
