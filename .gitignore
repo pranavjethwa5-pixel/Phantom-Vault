@@ -1,0 +1,37 @@
+# Runtime and generated files
+dist/
+node_modules/
+pydeps/
+runtime/
+__pycache__/
+*.py[cod]
+*.log
+*.err
+*.tmp
+*.exe
+*.dll
+*.zip
+*.mp4
+*.wav
+# Private state and credentials
+.env
+.env.*
+*.pem
+*.key
+*.pfx
+*.p12
+*.cer
+*.crt
+*.dpapi
+*.sqlite*
+*.db
+room.json
+accounts.json
+last-invite.txt
+identities/
+trust/
+archives/
+Shared Vault/
+audit-*.png
+audit-*.bin
+audit-*.txt

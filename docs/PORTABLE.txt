@@ -1,0 +1,27 @@
+PHANTOM VAULT R14 - WINDOWS DESKTOP
+Launch Phantom Vault.exe. Copy the entire Portable directory for another Windows PC.
+HOST: choose name, server password and a strong generated or custom-derived root key.
+The app detects global IPv6, creates a TLS 1.3 certificate, and exports a PV2 invitation.
+JOIN: enter invitation once, chosen name, password and root key.
+Identity is bound to a device-generated Ed25519 key protected by Windows credential storage.
+HTTPS transports signed API requests; the interface is packaged locally in Electron.
+Keys: either participant can request signed rotation. Clients derive identical epoch keys
+from the root secret using HKDF-SHA256 and verify the rotation history automatically.
+The host can select a timed rotation interval. Keep the initial root key for reconnecting.
+Archive Room / Create New preserves the old room if the root itself must be replaced.
+Port: TCP 9543. External access requires IPv6 routing and appropriate firewall rules.
+No firewall modifications or external connectivity test were performed by this build.
+Local profile: %LOCALAPPDATA%\PhantomVaultDesktop_R14
+R14 uses a new database/profile; R13 data is not automatically migrated.
+Trust: first invitation must be obtained via a trusted channel. Certificate SPKI is pinned;
+validity, self-signature and IP SAN are checked. App-level mutual authentication is not
+TLS client-certificate mTLS. Device identity and peer pinning are trust-on-first-use.
+Root compromise exposes derived epochs; rotation is not forward secrecy.
+Current epoch limit: 4096. Create a new room when a root must be replaced.
+Some media previews and downloads above the legacy size threshold use explicitly
+authorized host-assisted decryption, as in R13. Downloaded files are not compressed.
+Not a third-party security audit. The executable is not Authenticode signed.
+Verified: local global-IPv6 host/join, signed messaging, both-side rotation, reconnect,
+old files/messages, wrong pin/root/identity rejection, replay/hash/signature rejection,
+and three-chunk byte-for-byte download with independent SHA-256 comparison.
+See audit-final.log and audit-final.err in the parent R14 checkpoint.
