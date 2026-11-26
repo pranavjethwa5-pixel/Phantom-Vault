@@ -16,7 +16,7 @@ Push-Location $source
 try {
     npm.cmd ci --no-audit --no-fund
     if ($LASTEXITCODE -ne 0) { throw 'npm ci failed' }
-    $electronExe = (node.exe -p "require('electron')").Trim()
+    $electronExe = (node.exe -p "require('electron')" | Select-Object -Last 1).Trim()
     if (!(Test-Path $electronExe)) { throw 'Electron runtime unavailable' }
 } finally { Pop-Location }
 New-Item -ItemType Directory -Path $out -Force | Out-Null

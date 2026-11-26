@@ -12,4 +12,4 @@ No automatic firewall modification is performed. Keep the application and depend
 
 ## Distribution
 
-The repository contains source, not bundled third-party executables. Review the original package metadata and dependency licenses (including FFmpeg and PyMuPDF) before distributing a portable binary or licensing the project. No independent license grant is added by this repository preparation.
+The repository contains source, not bundled third-party executables. Review the original package metadata and dependency licenses (including FFmpeg and PyMuPDF) before distributing a portable binary or licensing the project. The original project source is released under the ISC license; this grant does not cover third-party software.

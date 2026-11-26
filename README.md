@@ -78,3 +78,7 @@ The R14 checkpoint passed same-machine global IPv6 host/join, signed messaging, 
 - The executable is unsigned. See [SECURITY.md](SECURITY.md) before deployment.
 
 Source-only repository: no user databases, certificates, private keys, invitations, or bundled runtime binaries are committed. Third-party software remains subject to its own license terms; review distribution obligations before publishing a binary release.
+
+## License
+
+Original source: [ISC](LICENSE). Dependencies have separate licenses; binary redistribution is not included in this source release.

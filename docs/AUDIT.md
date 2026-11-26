@@ -20,3 +20,7 @@ PASS R14 complete local audit
 ~~~
 
 The test suite does not establish Internet reachability or independent security assurance.
+
+## Clean repository rebuild
+
+The portable build script initially failed when the Electron runtime download message was included in its path output. The script was corrected and the rebuilt package passed runtime import checks and the complete same-machine global IPv6 audit with exit code 0. No application source changes were needed. Electron emitted deprecated credential-storage API warnings; cross-network deployment, full HEVC and independent security review remain unverified.
